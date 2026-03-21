@@ -16,6 +16,7 @@
                     <th>NOMBRES</th>
                     <th>APELLIDOS</th>
                     <th>CORREO</th>
+                    <th>ACCIONES</th>
                 </tr>
             <tbody>
                 <c:forEach items="${usuarios}" var="item">
@@ -26,6 +27,7 @@
                         <td>${item.nombres}</td>
                         <td>${item.apellidos}</td>
                         <td>${item.email}</td>
+                        <td></td>
                     </tr>
                 </c:forEach>
                 <c:if test="${usuarios.size() == 0}">

@@ -19,6 +19,23 @@ public class usuarios {
     private String contrasena;
     private String conf_contrasena;
 
+    public usuarios() {
+    }
+
+    public usuarios(int id, String tipo_documento, String documento, String nombres, String apellidos, String email, String conf_email, String contrasena, String conf_contrasena) {
+        this.id = id;
+        this.tipo_documento = tipo_documento;
+        this.documento = documento;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.conf_email = conf_email;
+        this.contrasena = contrasena;
+        this.conf_contrasena = conf_contrasena;
+    }
+    
+    
+
     public int getId() {
         return id;
     }

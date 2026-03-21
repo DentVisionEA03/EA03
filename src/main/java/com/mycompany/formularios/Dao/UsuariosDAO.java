@@ -32,8 +32,6 @@ public class UsuariosDAO {
                 obj.setApellidos(rs.getString("apellidos"));
                 obj.setEmail(rs.getString("correo"));
                 obj.setConf_email(rs.getString("conf_correo"));
-                obj.setContrasena(rs.getString("contrasena"));
-                obj.setConf_contrasena(rs.getString("conf_contrasena"));
                 lista.add(obj);
             }
         } catch (Exception e) {
