@@ -14,11 +14,6 @@
     <body>
         <h2>Registrar Nuevo Usuario</h2>
         
-<<<<<<< HEAD
-              <%-- Formulario que envía datos por POST al Servlet --%>
-=======
-       <%-- Formulario que envía datos por POST al Servlet --%>
->>>>>>> 096427dfd95122ec262391b2f71aac5127237283
 
         <form action="UsuarioServlet" method="POST">
 
@@ -55,17 +50,63 @@
                        title="Ingrese solo números (entre 7 y 12 dígitos)" required>
 
             </div>
-<<<<<<< HEAD
-        
+                
+        <div>
+
+                <label>Nombres:</label>
+
+                <%-- Validación 2: Campo obligatorio --%>
+
+                <input type="text" name="nombres" required>
+
+            </div>
+
+
+
+            <div>
+
+                <label>Apellidos:</label>
+
+                <input type="text" name="apellidos" required>
+
+            </div>
+
+
+
+            <div>
+
+                <label>Correo Electrónico:</label>
+
+                <%-- Validación 3: Formato de email correcto --%>
+
+                <input type="email" name="email" placeholder="ejemplo@correo.com" required>
+
+            </div>
+
+
+
+            <br>
+
+            <button type="submit" name="accion" value="guardar">Guardar Usuario</button>
+
+            <a href="UsuarioServlet?accion=listar">Cancelar y Volver</a>
+
+            
+
+        </form>
+
+
+
+        <%-- Espacio para mensajes de éxito o error (Plus de la evidencia) --%>
+
+        <c:if test="${not empty mensaje}">
+
+            <p style="color: blue;">${mensaje}</p>
+
+        </c:if>
+
+   
         
                 
     </body>
 </html>
-=======
-
-
-
-          
-
-</html>
->>>>>>> 096427dfd95122ec262391b2f71aac5127237283
