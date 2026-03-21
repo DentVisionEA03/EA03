@@ -14,7 +14,11 @@
     <body>
         <h2>Registrar Nuevo Usuario</h2>
         
+<<<<<<< HEAD
               <%-- Formulario que envía datos por POST al Servlet --%>
+=======
+       <%-- Formulario que envía datos por POST al Servlet --%>
+>>>>>>> 096427dfd95122ec262391b2f71aac5127237283
 
         <form action="UsuarioServlet" method="POST">
 
@@ -51,8 +55,17 @@
                        title="Ingrese solo números (entre 7 y 12 dígitos)" required>
 
             </div>
+<<<<<<< HEAD
         
         
                 
     </body>
 </html>
+=======
+
+
+
+          
+
+</html>
+>>>>>>> 096427dfd95122ec262391b2f71aac5127237283
