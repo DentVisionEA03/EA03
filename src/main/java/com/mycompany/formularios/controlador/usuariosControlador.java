@@ -5,7 +5,6 @@
 package com.mycompany.formularios.controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ import com.mycompany.formularios.Dao.UsuariosDAO;
  */
 public class usuariosControlador extends HttpServlet {
 
-    private UsuariosDAO usuarios = new UsuariosDAO();
+    private UsuariosDAO usuariosDao = new UsuariosDAO();
     private final String paglistar = "/vistas/listar.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +38,7 @@ public class usuariosControlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        request.setAttribute("usuarios",usuarios.ListarTodos());
+        request.setAttribute("Usuarios",usuariosDao.ListarTodos());
         request.getRequestDispatcher(paglistar).forward(request, response);
     }
 

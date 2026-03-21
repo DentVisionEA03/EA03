@@ -8,7 +8,7 @@ package com.mycompany.formularios.modelo;
  *
  * @author Creyese23
  */
-public class usuarios {
+public class Usuarios {
     private int id;
     private String tipo_documento;
     private String documento;

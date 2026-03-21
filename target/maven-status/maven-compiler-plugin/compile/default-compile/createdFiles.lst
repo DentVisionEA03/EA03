@@ -1,6 +1,5 @@
 com\mycompany\formularios\resources\JakartaEE10Resource.class
-com\mycompany\formularios\config\test.class
-com\mycompany\formularios\modelo\usuarios.class
+com\mycompany\formularios\modelo\Usuarios.class
 com\mycompany\formularios\config\conexion.class
 com\mycompany\formularios\controlador\usuariosControlador.class
 com\mycompany\formularios\Dao\UsuariosDAO.class
