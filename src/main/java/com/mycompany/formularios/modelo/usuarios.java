@@ -18,7 +18,7 @@ public class usuarios {
     private String conf_email;
     private String contrasena;
     private String conf_contrasena;
-
+/*
     public usuarios() {
     }
 
@@ -33,7 +33,7 @@ public class usuarios {
         this.contrasena = contrasena;
         this.conf_contrasena = conf_contrasena;
     }
-    
+  */  
     
 
     public int getId() {
