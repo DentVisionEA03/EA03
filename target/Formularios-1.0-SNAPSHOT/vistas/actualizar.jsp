@@ -40,6 +40,22 @@
             <label>Apellidos:</label><br>
             <input type="text" name="txtApellidos" value="${usuario.apellidos}" required>
             <br><br>
+            
+            <label>Correo Electrónico:</label><br>
+            <input type="email" name="txtEmail" value="${usuario.email}" required>
+            <br><br>
+
+            <label>Confirmar Correo:</label><br>
+            <input type="email" name="txtConfEmail" value="${usuario.conf_email}" required>
+            <br><br>
+
+            <label>Nueva Contraseña:</label><br>
+            <input type="password" name="txtPass" placeholder="Dejar en blanco para no cambiar">
+            <br><br>
+
+            <button type="submit">Actualizar Registro</button>
+            <a href="usuariosControlador?accion=listar">Regresar al listado</a>
+        </form>
 
             
     </body>
