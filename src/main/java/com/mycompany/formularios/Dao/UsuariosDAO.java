@@ -19,7 +19,7 @@ public class UsuariosDAO {
         
         try {
             con = conexion.getConnection();
-            String sql = "select * form usuarios";
+            String sql = "select * from usuarios";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             
