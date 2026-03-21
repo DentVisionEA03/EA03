@@ -29,7 +29,17 @@
             </select>
             <br><br>
 
-            
+            <label>Documento:</label><br>
+            <input type="text" name="txtDocumento" value="${usuario.documento}" required>
+            <br><br>
+
+            <label>Nombres:</label><br>
+            <input type="text" name="txtNombres" value="${usuario.nombres}" required>
+            <br><br>
+
+            <label>Apellidos:</label><br>
+            <input type="text" name="txtApellidos" value="${usuario.apellidos}" required>
+            <br><br>
 
             
     </body>
