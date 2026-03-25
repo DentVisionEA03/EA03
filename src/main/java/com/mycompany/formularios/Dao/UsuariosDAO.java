@@ -30,8 +30,8 @@ public class UsuariosDAO {
                 obj.setDocumento(rs.getString("documento"));
                 obj.setNombres(rs.getString("nombres"));
                 obj.setApellidos(rs.getString("apellidos"));
-                obj.setEmail(rs.getString("correo"));
-                obj.setConf_email(rs.getString("conf_correo"));
+                obj.setEmail(rs.getString("email"));
+                obj.setConf_email(rs.getString("conf_email"));
                 obj.setContrasena(rs.getString("contrasena"));
                 obj.setConf_contrasena(rs.getString("conf_contrasena"));
                 lista.add(obj);
