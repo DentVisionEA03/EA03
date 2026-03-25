@@ -1,0 +1,23 @@
+# Carpetas
+target/
+
+# Archivos compilados
+*.class
+
+# Archivos empaquetados
+*.war
+
+# Logs
+*.log
+
+# Configuración del sistema
+.DS_Store
+Thumbs.db
+
+# NetBeans
+nbproject/private/
+build/
+dist/
+nbbuild/
+nbdist/
+.nb-gradle/
