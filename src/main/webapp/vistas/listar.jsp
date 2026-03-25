@@ -30,7 +30,7 @@
                         <td></td>
                     </tr>
                 </c:forEach>
-                <c:if test="${usuarios.size() == 0}">
+                <c:if test="${empty usuarios}">
                     <tr>
                         <td colspan="9">
                             No hay registros
