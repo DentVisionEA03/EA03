@@ -5,11 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Registro de usuarios</title>
     </head>
     <table>
             <thead>
@@ -34,7 +35,7 @@
                         <td></td>
                     </tr>
                 </c:forEach>
-                <c:if test="${empty usuarios}">
+                <c:if test="${empty usuarios}"> 
                     <tr>
                         <td colspan="9">
                             No hay registros
@@ -44,5 +45,14 @@
             </tbody>
             </thead>
         </table>
+        <!-- MENSAJE DE ÉXITO -->
+    <c:if test="${not empty mensaje}">
+        <p style="color: green;">${mensaje}</p>
+    </c:if>
+
+    <!-- MENSAJE DE ERROR -->
+    <c:if test="${not empty error}">
+        <p style="color: red;">${error}</p>
+    </c:if>
     </body>
 </html>

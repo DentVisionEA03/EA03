@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.mycompany.formularios.controlador;
 
-import com.mycompany.formularios.Dao.UsuariosDAO;
+import com.mycompany.formularios.Dao.UsuariosDAOVJ;
 import com.mycompany.formularios.modelo.usuarios;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -12,85 +8,116 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
-/**
- *
- * @author jeffry
- */
 @WebServlet(name = "usuariosControladorVJ", urlPatterns = {"/usuariosControladorVJ"})
 public class usuariosControladorVJ extends HttpServlet {
     
-    UsuariosDAO usuarios = new UsuariosDAO();
-    private final String paglistar = "/vistasj/listarj.jsp";
+    UsuariosDAOVJ usuariosDAO = new UsuariosDAOVJ();
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private final String paglistar = "/vistasJ/listarJ.jsp";
+    private final String pagcrear = "/vistasJ/crearJ.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+
         String accion = request.getParameter("accion");
+
+        if (accion == null) {
+            listar(request, response);
+            return;
+        }
+
         switch (accion) {
             case "listar":
-                    listar(request, response);
+                listar(request, response);
                 break;
+
+            case "guardar":
+                guardar(request, response);
+                break;
+
+            case "crear":
+                request.getRequestDispatcher(pagcrear).forward(request, response);
+                break;
+
             default:
-                throw new AssertionError();
+                listar(request, response);
+                break;
         }
     }
-    
-    // MÉTODO LISTAR
-     protected void listar(HttpServletRequest request, HttpServletResponse response)
+
+    // 🔹 LISTAR
+    protected void listar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        request.setAttribute("usuarios",usuarios.ListarTodos());
+
+        request.setAttribute("usuarios", usuariosDAO.ListarTodos());
         request.getRequestDispatcher(paglistar).forward(request, response);
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
+    // 🔹 GUARDAR (CREAR USUARIO)
+    protected void guardar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // 📥 RECIBIR DATOS DEL JSP
+        String tipo = request.getParameter("tipo_documento");
+        String doc = request.getParameter("documento");
+        String nombres = request.getParameter("nombres");
+        String apellidos = request.getParameter("apellidos");
+        String email = request.getParameter("email");
+        String confEmail = request.getParameter("conf_email");
+        String pass = request.getParameter("contrasena");
+        String confPass = request.getParameter("conf_contrasena");
+
+        // 🔒 VALIDACIÓN BÁSICA (IMPORTANTE)
+        if (!email.equals(confEmail)) {
+            request.setAttribute("error", "Los correos no coinciden");
+            request.getRequestDispatcher(pagcrear).forward(request, response);
+            return;
+        }
+
+        if (!pass.equals(confPass)) {
+            request.setAttribute("error", "Las contraseñas no coinciden");
+            request.getRequestDispatcher(pagcrear).forward(request, response);
+            return;
+        }
+
+        // 🧱 CREAR OBJETO
+        usuarios u = new usuarios();
+        u.setTipo_documento(tipo);
+        u.setDocumento(doc);
+        u.setNombres(nombres);
+        u.setApellidos(apellidos);
+        u.setEmail(email);
+        u.setConf_email(confEmail);
+        u.setContrasena(pass);
+        u.setConf_contrasena(confPass);
+
+        // 💾 GUARDAR EN BD
+        boolean resultado = usuariosDAO.insertar(u);
+
+        if (resultado) {
+            request.setAttribute("mensaje", "Usuario creado correctamente");
+            listar(request, response);
+        } else {
+            request.setAttribute("error", "Error al guardar usuario");
+            request.getRequestDispatcher(pagcrear).forward(request, response);
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        return "Controlador de usuarios";
+    }
 }
