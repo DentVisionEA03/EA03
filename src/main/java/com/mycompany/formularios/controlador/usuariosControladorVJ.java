@@ -16,6 +16,7 @@ public class usuariosControladorVJ extends HttpServlet {
 
     private final String paglistar = "/vistasJ/listarJ.jsp";
     private final String pagcrear = "/vistasJ/crearJ.jsp";
+    private final String pagbuscar= "/vistasJ/buscarJ.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,6 +40,10 @@ public class usuariosControladorVJ extends HttpServlet {
             case "crear":
                 request.getRequestDispatcher(pagcrear).forward(request, response);
                 break;
+                
+            case "buscar":                         
+                    buscar(request, response);                    
+                break;   
 
             default:
                 listar(request, response);
@@ -103,7 +108,44 @@ public class usuariosControladorVJ extends HttpServlet {
             request.getRequestDispatcher(pagcrear).forward(request, response);
         }
     }
+    
 
+
+    protected void buscar(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+
+    try {
+
+        String idStr = request.getParameter("id");
+
+        if (idStr == null || idStr.trim().isEmpty()) {
+            request.setAttribute("mensaje", "Debes ingresar un ID para buscar");
+            request.getRequestDispatcher(pagbuscar).forward(request, response);
+            return;
+        }
+
+        int id = Integer.parseInt(idStr);
+
+        usuarios usuario = usuariosDAO.buscarPorId(id);
+
+        if (usuario != null) {
+            request.setAttribute("usuario", usuario); // ✔ CORRECTO
+        } else {
+            request.setAttribute("mensaje", "Usuario no encontrado");
+        }
+
+        request.getRequestDispatcher(pagbuscar).forward(request, response);
+
+    } catch (NumberFormatException e) {
+        request.setAttribute("mensaje", "El ID debe ser numérico");
+        request.getRequestDispatcher(pagbuscar).forward(request, response);
+
+    } catch (Exception e) {
+        request.setAttribute("mensaje", "Error al buscar el usuario");
+        request.getRequestDispatcher(pagbuscar).forward(request, response);
+    }
+}
+        
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

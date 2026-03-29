@@ -79,6 +79,42 @@ public class UsuariosDAOVJ {
 
         return resultado;
     }
+    
+    
+    // MÉTODO BUSCAR POR ID
+public usuarios buscarPorId(int id) {
+    usuarios u = null;
+
+    try {
+        con = conexion.getConnection();
+
+        String sql = "SELECT * FROM usuarios WHERE id = ?";
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            u = new usuarios();
+            u.setId(rs.getInt("id"));
+            u.setTipo_documento(rs.getString("tipo_documento"));
+            u.setDocumento(rs.getString("documento"));
+            u.setNombres(rs.getString("nombres"));
+            u.setApellidos(rs.getString("apellidos"));
+            u.setEmail(rs.getString("email"));
+            u.setConf_email(rs.getString("conf_email"));
+            u.setContrasena(rs.getString("contrasena"));
+            u.setConf_contrasena(rs.getString("conf_contrasena"));
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        cerrarRecursos();
+    }
+
+    return u;
+}
 
     //  MÉTODO PARA CERRAR CONEXIONES
     private void cerrarRecursos(){
