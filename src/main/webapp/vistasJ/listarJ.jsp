@@ -1,3 +1,9 @@
+<%-- 
+    Document   : listar
+    Created on : 25/03/2026, 2:24:14 p. m.
+    Author     : jeffry
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -6,8 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de usuarios</title>
     </head>
-    <body>
-        <table>
+    <table>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -30,7 +35,7 @@
                         <td></td>
                     </tr>
                 </c:forEach>
-                <c:if test="${empty usuarios}">
+                <c:if test="${empty usuarios}"> 
                     <tr>
                         <td colspan="9">
                             No hay registros
@@ -40,5 +45,14 @@
             </tbody>
             </thead>
         </table>
+        <!-- MENSAJE DE ÉXITO -->
+    <c:if test="${not empty mensaje}">
+        <p style="color: green;">${mensaje}</p>
+    </c:if>
+
+    <!-- MENSAJE DE ERROR -->
+    <c:if test="${not empty error}">
+        <p style="color: red;">${error}</p>
+    </c:if>
     </body>
 </html>
